@@ -371,7 +371,7 @@ namespace StudentManagementService.Controllers
             }
             else
             {
-                RegisterUser(model.Email, model.Role);
+               // RegisterUser(model.Email, model.Role);
             }
 
             return Ok(HttpStatusCode.OK);
