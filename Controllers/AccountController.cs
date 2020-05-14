@@ -17,9 +17,9 @@ using Microsoft.Owin.Security.OAuth;
 using StudentManagementService.Models;
 using StudentManagementService.Providers;
 using StudentManagementService.Results;
-using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Net;
+using SchoolDataAccess.BusinessLogic;
 
 namespace StudentManagementService.Controllers
 {
@@ -360,6 +360,7 @@ namespace StudentManagementService.Controllers
             {
                 return BadRequest(ModelState);
             }
+            Admin admin = new Admin();
 
             var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
 
@@ -371,7 +372,7 @@ namespace StudentManagementService.Controllers
             }
             else
             {
-               // RegisterUser(model.Email, model.Role);
+                admin.RegisterUser(model.Email, model.Role);
             }
 
             return Ok(HttpStatusCode.OK);

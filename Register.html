@@ -25,6 +25,17 @@
                             <input type="text" id="txtEmail" placeholder="Email" />
                         </td>
                     </tr>
+                    <TR>
+                        <TD class="roles">
+                            Roles
+                        </TD>
+                        <TD>
+                            <select id="RolesID">
+                                <option value="Teacher">Teacher</option>
+                                <option value="Student">Student</option>                               
+                            </select>
+                        </TD>
+                    </TR>
                     <tr>
                         <td>
                             Password
@@ -61,7 +72,7 @@
                             <h2>Registration Successfull</h2>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" data-dismiss="modal" class="btn btn-success">
+                            <button type="button" data-dismiss="modal" id="BtnLogin" class="btn btn-success">
                                 Close
                             </button>
                         </div>
@@ -81,12 +92,16 @@
             $('#linkClose').click(function () {
                 $('#divError').hide('fade');
             })
+            $('#BtnLogin').click(function () {
+                window.location.href = "Login.html";
+            })
             $('#btnRegister').click(function () {
                 $.ajax({
                     url: 'api/account/register',
                     method: 'POST',
                     data: {
                         email: $('#txtEmail').val(),
+                        Role: $('#RolesID').val(),
                         password: $('#txtPassword').val(),
                         confirmPassword: $('#txtConfirmPassword').val(),
                     },

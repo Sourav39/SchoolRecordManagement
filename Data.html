@@ -8,12 +8,12 @@
 <body style="padding-top:20px">
     <div class="col-md-10 col-md-offset-1">
         <div class="well">
-            <input type="button" id="btnLoadEmployees" class="btn btn-success" value="Load Employees" />
+            <input type="button" id="btnLoadEmployees" class="btn btn-success" value="Edit Profile" />
             <input type="button" id="btnLogOff" class="btn btn-success pull-right" value="Log Off" />
             <input type="button" id="btnPasswordReset" class="btn btn-success" value="Reset Password" />
         </div>
         <div class="well hidden" id="divData">
-            <table class="table table-bordered" id="tblData">
+            <!--<table class="table table-bordered" id="tblData">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -25,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody id="tblBody"></tbody>
-            </table>
+            </table>-->
         </div>
         <div class="modal fade" tabindex="-1" id="errorModal" data-keyboard="false" data-backdrop="static">
             <div class="modal-dialog modal-sm">
@@ -76,38 +76,38 @@
             $('#btnPasswordReset').click(function () {
                 window.location.href = 'ResetPassword.html';
             })
-            $('#btnLoadEmployees').click(function () {
-                $.ajax({
-                    url: 'api/employee',
-                    method: 'GET',
-                    headers: {
-                        'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken')
-                    },
-                    success: function (data) {
-                        $('#divData').removeClass('hidden');
-                        $('#tblBody').empty();
-                        $.each(data, function (index, value) {
-                            var row = $('<tr><td>' + value.ID + '</td><td>'
-                                + value.Name + '</td><td>'
-                                + value.Department + '</td><td>'
-                                + value.Email + '</td><td>'
-                                + value.Gender + '</td><td>'
-                                + value.Salary + '</td><td>');
-                            $('#tblData').append(row);
-                        });
-                    },
-                    error: function (jqXHR) {
-                        if (jqXHR.status == "401") {
-                            $('#errorModal').modal('show');
-                        }
-                        else {
-                            $('#divErrorText').text(jqXHR.responseText);
-                            $('#divError').show('fade');
-                        }
-                    }
-                });
+            //$('#btnLoadEmployees').click(function () {
+            //    $.ajax({
+            //        url: 'api/employee',
+            //        method: 'GET',
+            //        headers: {
+            //            'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken')
+            //        },
+            //        success: function (data) {
+            //            $('#divData').removeClass('hidden');
+            //            $('#tblBody').empty();
+            //            $.each(data, function (index, value) {
+            //                var row = $('<tr><td>' + value.ID + '</td><td>'
+            //                    + value.Name + '</td><td>'
+            //                    + value.Department + '</td><td>'
+            //                    + value.Email + '</td><td>'
+            //                    + value.Gender + '</td><td>'
+            //                    + value.Salary + '</td><td>');
+            //                $('#tblData').append(row);
+            //            });
+            //        },
+            //        error: function (jqXHR) {
+            //            if (jqXHR.status == "401") {
+            //                $('#errorModal').modal('show');
+            //            }
+            //            else {
+            //                $('#divErrorText').text(jqXHR.responseText);
+            //                $('#divError').show('fade');
+            //            }
+            //        }
+            //    });
 
-            });
+            //});
         });
     </script>
 </body>
